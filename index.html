@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @media print {
+            .heading {
+                display: none;
+            }
+
+            .org-input, .summ-input {
+                display: none;
+            }
+
+            .print-btn {
+                display: none;
+            }
+        }
+
+        .check {
+            width: 100%;
+            position: relative;
+            font-family: sans-serif;
+            font-size: 16px;
+        }
+
+        .check-org {
+            text-align: center;
+        }
+
+        .check-border {
+            width: 100%;
+            height: 5px;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+        }
+
+        .check-right {
+            position: absolute;
+            right: 0;
+        }
+        
+        .org-input, .summ-input {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .print-btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .check-summ {
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading">Печать чека</h1>
+    <div class="check">
+        <p class="check-org" id="org">ООО "ТЕСТ"</p>
+        <div class="check-border"></div>
+        <p class="check-goods">
+            <span class="check-goods-label check-left">1СК</span>
+            <span class="check-goods-text check-right" id="goods">1*=1000</span>
+        </p>
+        <div class="check-border"></div>
+        <p class="check-summ">
+            <span class="check-summ-label check-left">ИТОГ</span>
+            <span class="check-summ-text check-right" id="summ">=1000</span>
+        </p>
+        <div class="check-border"></div>
+        <p class="check-date">
+            <span class="check-date-label check-left" id="date">01.01.2001</span>
+            <span class="check-date-text check-right" id="time">01:00</span>
+        </p>
+        <p class="check-number">
+            <span class="check-number-label check-left">КАССИР:</span>
+            <span class="check-number-text check-right">01</span>
+        </p>
+        <p class="check-person">
+            <span class="check-person-label check-left">ЧЕК:</span>
+            <span class="check-person-text check-right" id="num">0001</span>
+        </p>
+        <div class="check-border"></div>
+        <p class="check-inn">
+            <span class="check-inn-label check-left">ИНН:</span>
+            <span class="check-inn-text check-right">9505513219</span>
+        </p>
+        <p class="check-cmp">
+            <span class="check-cmp-label check-left">ЧМП:</span>
+            <span class="check-cmp-text check-right">00428332</span>
+        </p>
+    </div>
+    <input type="text" class="org-input" id="org-input" value='ООО "ТЕСТ"'>
+    <input type="number" class="summ-input" id="summ-input" value='1000'>
+    <button class="print-btn" id="print-btn">Печать</button>
+
+    <script>
+        var number = 0;
+        var print_btn = document.getElementById("print-btn");
+        var org = document.getElementById("org");
+        var org_input = document.getElementById("org-input");
+        var summ = document.getElementById("summ");
+        var goods = document.getElementById("goods");
+        var summ_input = document.getElementById("summ-input");
+        var num = document.getElementById("num");
+        var check_date = document.getElementById("date");
+        var check_time = document.getElementById("time");
+        
+        print_btn.onclick = function prnt() {
+            number++;
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var yyyy = today.getFullYear();
+            var hh = String(today.getHours()).padStart(2, '0');
+            var mn = String(today.getMinutes()).padStart(2, '0');
+            org.innerHTML = org_input.value;  
+            summ.innerHTML = "=" + summ_input.value;
+            goods.innerHTML = "1*=" + summ_input.value;
+            num.innerHTML = String(number).padStart(4, "0");
+            check_date.innerHTML = mm + "." + dd + "." + yyyy;
+            check_time.innerHTML = hh + ":" + mn;
+            print();
+        };
+    </script>
+</body>
+</html>
