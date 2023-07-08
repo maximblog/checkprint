@@ -65,12 +65,12 @@
         <div class="check-border"></div>
         <p class="check-goods">
             <span class="check-goods-label check-left">1СК</span>
-            <span class="check-goods-text check-right" id="goods">1*=1000</span>
+            <span class="check-goods-text check-right" id="goods">1*=1000.00</span>
         </p>
         <div class="check-border"></div>
         <p class="check-summ">
             <span class="check-summ-label check-left">ИТОГ</span>
-            <span class="check-summ-text check-right" id="summ">=1000</span>
+            <span class="check-summ-text check-right" id="summ">=1000.00</span>
         </p>
         <div class="check-border"></div>
         <p class="check-date">
@@ -96,7 +96,7 @@
         </p>
     </div>
     <input type="text" class="org-input" id="org-input" value='ООО "ТЕСТ"'>
-    <input type="number" class="summ-input" id="summ-input" value='1000'>
+    <input type="number" step="0.01" class="summ-input" id="summ-input" value='1000'>
     <button class="print-btn" id="print-btn">Печать</button>
 
     <script>
@@ -120,8 +120,8 @@
             var hh = String(today.getHours()).padStart(2, '0');
             var mn = String(today.getMinutes()).padStart(2, '0');
             org.innerHTML = org_input.value;  
-            summ.innerHTML = "=" + summ_input.value;
-            goods.innerHTML = "1*=" + summ_input.value;
+            summ.innerHTML = "=" + summ_input.value + ".00";
+            goods.innerHTML = "1*=" + summ_input.value + ".00";
             num.innerHTML = String(number).padStart(4, "0");
             check_date.innerHTML = mm + "." + dd + "." + yyyy;
             check_time.innerHTML = hh + ":" + mn;
